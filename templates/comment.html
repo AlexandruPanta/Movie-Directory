@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Directory</title>
+    <style>
+        body{
+            background-color:  #6A5644ff;
+        }
+        .menu{
+            height: 50px;
+            width: 100px;
+            background-color: #E8C36Cff;
+            border-radius: 6px;
+            margin-left: 20px;
+        }
+        .menu div{
+            color: #6A5644ff;
+            position: relative;
+            top: 30%;
+            left: 20%;
+            display: inline-block;
+            text-indent: 10px;
+        }
+        .username{
+            position: absolute;
+            font-size: 20px;
+            top: 2.5%;
+            left: 85%;
+            color: #D3AE64ff;
+        }
+        .login{
+            color: white;
+            position: absolute;
+            border:#797979;
+            background-color: #B22812ff;
+            font-size: 15px;
+            top: 2%;
+            left: 90%;
+            border-radius: 8px;
+            height: 31px;
+            width: 80px;  
+            cursor: pointer;
+        }
+        .comment_textarea{
+            position: absolute;
+            border-radius: 8px;
+            background-color: rgba(95, 34, 16, 0.462);
+            top: 24%;
+            left: 3%;
+            color:#D3AE64ff;
+        }
+        .btn-submit{
+            position: absolute;
+            height: 36px;
+            width: 100px;
+            top: 30%;
+            left: 72%;
+            border-radius: 8px;
+            border:#797979;
+            background-color: #B22812ff;;
+            color: white;
+            cursor: pointer;
+        }
+        .comment-container{
+            margin: 10px;
+            position: absolute;
+            height: 300px;
+            width: 600px;
+            border-radius: 8px;
+            top: 15%;
+            left:30%;
+            background-color: rgba(95, 34, 16, 0.462);
+            padding: 20px;
+        }
+        .message{
+            position: absolute;
+            font-size: large;
+            color: #D3AE64ff;
+            text-align: center;
+            top: 15%;
+            left: 25%;
+        }
+        .no-comments-message{
+            position: absolute;
+            font-size: large;
+            color: #D3AE64ff;
+            text-align: center;
+            top: 60%;
+            left: 35%;
+        }
+        .comment-block {
+            position: relative;
+            top: 60%;
+        }
+        .comment-name-time {
+            background-color: rgba(2, 2, 2, 0.712);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .comment-name-time p {
+            font-size: 18px;
+            margin-top: 0%;
+            margin-bottom: 5px;
+            color: #D3AE64ff;
+        }
+        .comment-name-time span {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .comment-text {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #D3AE64ff;
+            line-height: 1.4;
+        }
+        .admin-btn button{
+            position: relative;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border:#797979;
+            background-color: #B22812ff;;
+            color: white;
+            cursor: pointer;
+        }
+        .menu div:hover{
+            color:rgba(95, 34, 16, 0.462);
+        }
+        .comment_textarea::placeholder{
+            color: #D3AE64ff;
+        }
+        .login:hover{
+            filter: brightness(95%);
+        }
+        .login:active{
+            filter: brightness(85%);
+        }
+    </style>
+</head>
+<body>
+    <header class="menu">
+        <a href="{{url_for('index')}}"><div id="Home">Home</div></a>
+        {% if user_logged_in %}
+        <a href="{{ url_for('logout') }}">
+            <button class="login">Logout</button>
+        </a>
+        <span class="username">{{ username }}</span>
+        {% else %}
+        <a href="{{ url_for('login') }}">
+            <button class="login">Login</button>
+        </a>
+        {% endif %}
+    </header>
+    <div class="comment-container">
+        <h2 style="color: #D3AE64ff; position: absolute; top: 2%; left: 36%">Create comment</h2>
+        {% if user_logged_in %}
+            <form action="{{ url_for('add_comment', movie_id=movie_id) }}" method="POST">
+                <textarea class="comment_textarea" name="comment" rows="4" cols="50" placeholder="Add your comment..."></textarea>
+                <br>
+                <button class="btn-submit" type="submit">Submit</button>
+            </form>
+        {% else %}
+            <p class="message">You need to be logged in to add a comment.</p>
+        {% endif %}
+            <h2 style="color: #D3AE64ff; position: absolute; top: 40%; left: 41%">Comments</h2>
+            <div class="comment-block">
+                {% if comments %}
+                    {% for comment in comments %}
+                        <div class = "admin-btn">
+                            <div class="comment-name-time">
+                                <p>{{ comment[5] }}</p>
+                                <span>Time: {{ comment[4] }}</span>
+                                <div class="comment-text">{{ comment[3] }}</div>
+                                {% if user_logged_in and admin_id == 2 %}
+                                <form action="{{ url_for('delete_comment', comment_id=comment[0]) }}" method="POST">
+                                    <button class="btn-delete" tag="{{ comment[0] }}" type="submit">Delete</button>
+                                </form>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>   
+                {% else %}
+                    <p class="no-comments-message">There are no comments yet.</p>
+                {% endif %}
+            </div>
+        </div>
+</body>
+</html> 
+   

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Directory</title>
+    <style>
+    body{
+    background-color:  #6A5644ff;
+    }
+    .menu{
+        height: 50px;
+        width: 100px;
+        background-color: #E8C36Cff;
+        border-radius: 6px;
+        margin-left: 20px;
+    }
+    .menu div{
+        color: #6A5644ff;
+        position: relative;
+        top: 30%;
+        left: 20%;
+        display: inline-block;
+        text-indent: 10px;
+    }
+    .registerlog{
+        color: #D3AE64ff;
+        height: 450px;
+        width: 500px;
+        background-color: rgba(95, 34, 16, 0.462);
+        transform: translate(95%,20%);
+        border-radius: 8px;
+    }
+    .error-message{
+        font-family: sans-serif;
+        padding-top: 10px;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .registerlog p{
+        font-size: 30px;
+        position: absolute;
+        left: 40%;
+        top: 0%;
+        color: #D3AE64ff;
+    }
+    .register{
+        font-size: 20px;
+        position: absolute;
+        left: 11%;
+        top: 50%;
+        color: #D3AE64ff;
+        border: 0;
+        background: #14131300; 
+    }
+    .email{
+        position: absolute;
+        text-indent:10px;
+        left: 10%;
+        top: 50%;
+        height: 40px;
+        width: 390px;
+        border: 10px;
+        border-radius: 8px;
+        color: rgb(0, 0, 0);
+        background-color: #ffffffbf;
+    }
+    .password{
+        position: absolute;
+        text-indent: 10px;
+        left: 10%;
+        top: 35%;
+        height: 40px;
+        width: 390px;
+        border: 10px;
+        border-radius: 8px;
+        color: rgb(0, 0, 0);
+        background-color: #ffffffbf;
+    }
+    .name{
+        position: absolute;
+        text-indent: 10px;
+        left: 10%;
+        top: 20%;
+        height: 40px;
+        width: 390px;
+        border: 10px;
+        border-radius: 8px;
+        color: rgb(0, 0, 0);
+        background-color: #ffffffbf;
+
+    }
+    .submit{
+        position: absolute;
+        padding: 10px 20px;
+        font-size: 20px;
+        text-indent: 10px;
+        left: 10%;
+        top: 65%;
+        height: 40px;
+        width: 390px;
+        border: 10px;
+        border-radius: 8px;
+        color: #D3AE64ff;
+        background-color: #0d0d0da9;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .cancel-link {
+        font-family:  sans-serif;
+        position: absolute;
+        display: inline-block;
+        text-align: center;
+        font-size: 20px;
+        text-indent: 10px;
+        padding: 10px 20px;
+        top: 79%;
+        left: 10%;
+        width: 350px;
+        border-radius: 8px;
+        color: #D3AE64ff;
+        background-color: #0d0d0da9;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .cancel-link:hover {
+        background-color: #D3AE64ff;
+        color: #0d0d0d;
+    }
+    .submit:hover{
+        background-color: #D3AE64ff;
+        color: #0d0d0d;
+    }
+    .menu div:hover{
+        color:rgba(95, 34, 16, 0.462);
+    }
+    </style>
+</head>
+<body>
+    <div class="img"></div>
+    <header class="menu">
+        <a href="index.html"><div id="Home">Home</div></a>
+    </header>
+    <div class="registerlog">
+        <p id="titleRegister">Register</p>
+        <form method="POST" action="{{ url_for('register_page') }}">
+            <input class ="email" type="email" name="email" placeholder="Email...">
+            <input class="name" type="text" name="name" placeholder="Username...">
+            <input class = "password" type="password" name="password" placeholder="Password...">
+            {% if error_message %}
+            <div class="error-message">{{ error_message }}</div>
+            {% endif %}
+            <button class="submit">Register</button>
+        </form>
+        <a href="{{ url_for('index') }}" class="cancel-link">Cancel</a>
+    </div>
+</body>
+</html>

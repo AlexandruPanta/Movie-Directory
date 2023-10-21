@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Directory</title>
+    <style>
+    body{
+    background-color:  #6A5644ff;
+    }
+    .menu{
+        height: 50px;
+        width: 100px;
+        background-color: #E8C36Cff;
+        border-radius: 6px;
+        margin-left: 20px;
+    }
+    .menu div{
+        color: #6A5644ff;
+        position: relative;
+        top: 30%;
+        left: 20%;
+        display: inline-block;
+        text-indent: 10px;
+    }
+    .username{
+        position: absolute;
+        font-size: 20px;
+        top: 2.5%;
+        left: 85%;
+        color: #D3AE64ff;;
+    }
+    .login{
+        color: white;
+        position: absolute;
+        border:#797979;
+        background-color: #B22812ff;
+        font-size: 15px;
+        top: 2%;
+        left: 90%;
+        border-radius: 8px;
+        height: 31px;
+        width: 80px; 
+        cursor: pointer;
+    }
+    .title{
+        font-size: 70px;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        left: 50%;
+        top: 5%;
+        color: #D3AE64ff;
+        font-family: Oleo Script Swash Caps;
+    }
+    .container_movie{
+        position: absolute;
+        text-align: center;
+        transform: translate(-50%,-50%);
+        left: 50%;
+        top: 25%; 
+    }
+    .MovieName{
+        display: inline-block;
+        width: 340px;
+        height: 35px;
+        border-radius: 8px;
+        border:#797979;
+        background-color: white;
+        opacity: 0.85;
+        color: black;
+        text-indent: 5%;
+        margin-right: 5px;
+    }
+    .YearMovie{
+        display: inline-block;
+        width: 115px;
+        height: 35px;
+        border-radius: 8px;
+        border:#797979;
+        background-color: white;
+        opacity: 0.85;
+        color: black;
+        text-indent: 7%;
+        margin-right: 5px;
+    }
+    .container_movie button{
+        height: 36px;
+        width: 100px;
+        border-radius: 8px;
+        border:#797979;
+        background-color: #B22812ff;
+        color: white;
+        cursor: pointer;
+    }
+    .error-message{
+        color:#D3AE64ff;
+        font-family: sans-serif;
+        padding-top: 10px;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .movie_poster{
+        margin: 10px;
+        position: absolute;
+        height: 350px;
+        width: 1400px;
+        top: 45%;
+        align-items: center;
+        border-radius: 8px;
+        background-color: rgba(95, 34, 16, 0.428);
+    }
+    .poster_container {
+        position: relative;
+        display: inline-block;
+    }
+    .poster_movie img{
+        max-width:auto;
+        position: relative;
+        margin-left: 45px;
+        margin-right: 20px;
+        margin-top: 30px;
+        height: 300px;
+        border: 2px solid rgb(0, 0, 0);
+        opacity: 0.75;
+    }
+    .movie_info p{
+        position: absolute;
+        color: rgb(255, 255, 255);
+        padding: 10px 10px ; 
+    }
+    .title_movie {
+        font-size: 20px;
+        top: 35%;
+        left: 17%;
+    }
+    .year_movie {
+        font-size: 16px;
+        top: 44%;
+        left: 17%;
+    }
+    .rated_movie{
+        top: 50%;
+        left: 40%;
+    }
+    .minutes_movie{
+        top: 50%;
+        left: 17%;
+    }
+    .plot_movie{
+        font-size: 12px; 
+        top: 60%;
+        left: 17%;
+        width: 65%;
+    }
+    .container_movie button:hover{
+        filter: brightness(95%);
+    }
+    .login:hover {
+        filter: brightness(95%);
+
+    }
+    .container_movie button:active{
+        filter: brightness(85%);
+    }
+    .login:active{
+        filter: brightness(85%);
+    }
+    .menu div:hover{
+        color:rgba(95, 34, 16, 0.462);
+    }
+</style>
+</head>
+<body>
+    <header class="menu">
+        <a href="index.html"><div href="index.html"id="Home">Home</div></a>
+        {% if user_logged_in %}
+        <a href="{{ url_for('logout') }}">
+            <button class="login">Logout</button>
+        </a>
+        <span class="username">{{ username }}</span> 
+        {% else %}
+        <a href="{{ url_for('login') }}">
+            <button class="login">Login</button>
+        </a>
+        {% endif %}
+    </header>
+    <p class="title">Movie Directory<p>
+    <div class="container_movie">
+    <form method="POST">
+        <input class="MovieName" type="text" name="movie_name" placeholder="Enter movie name">
+        <input class="YearMovie" type="text" name="year_movie" placeholder="Enter the year">
+        <button type="submit">Search</button>
+        {% if error_message %}
+            <div class="error-message">{{ error_message }}</div>
+        {% endif %}
+        {% if message %}
+        <div class="error-message">{{ message }}</div>
+        {% endif %}
+    </form>
+    </div>
+    <h2 style="position: absolute;color: #D3AE64ff; top: 35%; left: 38%; font-size: 40px;"> Top Rated Movies </h2>
+    <div class="movie_poster">
+        {% for movie_data in movie_data_list %}
+            <div class="poster_container">
+                <div class="poster_movie">
+                    <img src="{{ movie_data.poster }}">
+                </div>
+                <div class="movie_info">
+                    <div class="text-container">
+                        <p class="title_movie">{{ movie_data.title }}</p>
+                        <p class="rated_movie">{{ movie_data.rated }}</p>
+                        <p class="year_movie">{{ movie_data.year }}</p>
+                        <p class="minutes_movie">{{ movie_data.runtime }}</p>
+                        <p class="plot_movie">{{ movie_data.plot }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div> 
+</body>
+</html>
