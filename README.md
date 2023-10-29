@@ -1,55 +1,31 @@
 # Movie Directory
 
-This project is a movie directory application built with Flask. It allows users to enter data about movies, display the movies data, and filter through existing movies.
+## Table of Contents
+1. Introduction
+2. Features
+3. Installation
+4. Usage
+5. Contributing
+6. License
+
+## Introduction
+Welcome to the Movie Directory project! This is a comprehensive directory that provides detailed information about a wide range of movies. It's designed with a user-friendly interface and robust functionality to enhance your movie exploration experience.
 
 ## Features
+Our Movie Directory offers a variety of features:
 
-### User Authentication
-Users can register for an account, log in, and recover their password if forgotten.
-
-### Movie Data Entry
-Users can enter data about movies using the `Movieform` component.
-
-### Movie Display
-The `Movieslist` component displays the movies data.
-
-### Movie Search
-The `Search` component allows users to filter through existing movies.
-
-### Email Notifications
-The application sends email notifications to users when they recover their password.
-
-### Movie API
-The application uses a movie API to fetch and display movie data.
-
-## Components
-
-The application has 3 main components:
-
-1. **Movieform**: This component allows the user to enter data about movies.
-2. **Movieslist**: This component displays the movies data.
-3. **Search**: This component allows the user to filter through existing movies.
+- **Movie Search**: Our powerful search functionality allows you to find movies by title quickly and accurately.
+- **Detailed Information**: For each movie, we provide comprehensive information, including cast, director, genre, release date, runtime, and more.
+- **User-Friendly Interface**: The interface is designed to be intuitive and easy to navigate, enhancing the user experience.
 
 ## Installation
+Follow these steps to install the Movie Directory:
 
-To clone this repository, use the following git command:
+1. Clone the repository: `git clone https://github.com/AlexandruPanta/Movie-Directory.git`
+2. Navigate to the project directory: `cd Movie-Directory`
 
-```bash
-git clone https://github.com/AlexandruPanta/Movie-Directory.git
-```
+## Usage
+To use the Movie Directory:
 
-## Running the Application
-
-To start the application, use the following command:
-
-```bash
-python3 app.py
-```
-
-This will start the application and it will be accessible at 
-```bash 
-http://localhost:3000
-``` 
-(or whatever port you have configured) in your web browser.
-
-Please replace the generic commands with specific ones if your project requires different commands. Let me know if you need further assistance!
+1. Start the server: `python3 app.py`
+2. After starting the server, open your web browser and navigate to `http://localhost:3000` to start exploring movies!
