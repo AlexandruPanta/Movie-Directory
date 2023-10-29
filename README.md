@@ -36,3 +36,4 @@ We take security seriously in our Movie Directory project:
 
 - **Password Hashing**: User passwords are hashed using a secure hashing algorithm before being stored in our database. This means that even we don't know what your password is!
 
+- **Email Verification**: When a user forgets their password, an email is sent with a secure link to reset their password.
