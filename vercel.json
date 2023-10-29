@@ -1,14 +1,14 @@
 {
   "builds": [
     {
-      "src": "Movie-directory/app.py",
+      "src": "app.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "Movie-directory/app.py"
+      "dest": "app.py"
     }
   ]
 }
