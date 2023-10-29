@@ -52,6 +52,4 @@ http://localhost:3000
 ``` 
 (or whatever port you have configured) in your web browser.
 
-```bash
 Please replace the generic commands with specific ones if your project requires different commands. Let me know if you need further assistance!
-```
