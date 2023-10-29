@@ -5,8 +5,6 @@
 2. Features
 3. Installation
 4. Usage
-5. Contributing
-6. License
 
 ## Introduction
 Welcome to the Movie Directory project! This is a comprehensive directory that provides detailed information about a wide range of movies. It's designed with a user-friendly interface and robust functionality to enhance your movie exploration experience.
