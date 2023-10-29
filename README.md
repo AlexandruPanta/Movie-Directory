@@ -1,6 +1,26 @@
 # Movie Directory
 
-This project is a movie directory application built with React. It allows users to enter data about movies, display the movies data, and filter through existing movies.
+This project is a movie directory application built with Flask. It allows users to enter data about movies, display the movies data, and filter through existing movies.
+
+## Features
+
+### User Authentication
+Users can register for an account, log in, and recover their password if forgotten.
+
+### Movie Data Entry
+Users can enter data about movies using the `Movieform` component.
+
+### Movie Display
+The `Movieslist` component displays the movies data.
+
+### Movie Search
+The `Search` component allows users to filter through existing movies.
+
+### Email Notifications
+The application sends email notifications to users when they recover their password.
+
+### Movie API
+The application uses a movie API to fetch and display movie data.
 
 ## Components
 
@@ -10,19 +30,28 @@ The application has 3 main components:
 2. **Movieslist**: This component displays the movies data.
 3. **Search**: This component allows the user to filter through existing movies.
 
-Each movie object in the Movielist should have the following properties: name (the name of the movie), rating (the rating of the movie in the range of 0 to 100), and duration (the duration of the movie in hours).
-
-## Functionalities
-
-The application has several functionalities:
-
-- The Movieform component has fields for 'Movie Name', 'Ratings', and 'Duration'.
-- The Movieslist component displays the movie data sorted by duration in descending order.
-- The Search component allows the user to filter through existing movies in the directory by the beginning characters.
-
 ## Installation
 
 To clone this repository, use the following git command:
 
 ```bash
 git clone https://github.com/AlexandruPanta/Movie-Directory.git
+```
+
+## Running the Application
+
+To start the application, use the following command:
+
+```bash
+python3 app.py
+```
+
+This will start the application and it will be accessible at 
+```bash 
+http://localhost:3000
+``` 
+(or whatever port you have configured) in your web browser.
+
+```bash
+Please replace the generic commands with specific ones if your project requires different commands. Let me know if you need further assistance!
+```
